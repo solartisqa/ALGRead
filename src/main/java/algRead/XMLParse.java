@@ -1,15 +1,12 @@
 package algRead;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
-import java.lang.reflect.Array;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -17,12 +14,6 @@ import java.util.Map.Entry;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
@@ -43,6 +34,7 @@ public class XMLParse {
 	public static DatabaseOperation db = new DatabaseOperation();
 	public static Map<String, String> condition = new LinkedHashMap<String, String>();
 
+	@SuppressWarnings("resource")
 	public String XmlFiletoString(String filename) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filename), "UTF-8"));
 		String line;
@@ -171,7 +163,7 @@ public class XMLParse {
 	}
 
 	public static void main(String args[]) throws IOException, DatabaseException, SQLException {
-
+		String maindirpath = "E:\\ERCPackagesCA\\MA\\RC-CA-CW-10012014-V02\\";
 		String[] vehicleArr = { "Form Logic", "FormLogic-PrivatePassenger", "FormLogic-PublicTransportati",
 				"FormLogic-SpecialTypes", "FormLogic-Truck", "FormLogic-ZoneRated", "FormLogic-Garage",
 				"FormLogic-GarageServices" };
@@ -180,7 +172,7 @@ public class XMLParse {
 				"jdbc:mysql://192.168.84.225:3700/CommercialAuto_Development_ADMIN?useSSL=false", "root", "redhat");
 
 		XMLParse xmlparse = new XMLParse();
-		String maindirpath = "E:\\ERCPackagesCA\\UnZiped\\";
+		
 		xmlparse.getALGFilePath(maindirpath);
 		
 		LinkedHashMap<Integer, LinkedHashMap<String, String>> input =db.GetDataObjects("Select * from UniqueFormTableName");
