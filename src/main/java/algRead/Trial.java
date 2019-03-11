@@ -4,9 +4,11 @@ import java.io.File;
 import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import com.solartis.exception.DatabaseException;
 import com.solartis.util.common.DatabaseOperation;
@@ -33,6 +35,17 @@ public class Trial {
 			//System.out.println(getWords(inputrow.get("Condition")));
 		}
 		DatabaseOperation.CloseConn();
+		/* Set<Integer> linkedHashSet = new LinkedHashSet<>();
+		 linkedHashSet.add(3);
+		 linkedHashSet.add(1);
+		 linkedHashSet.add(2);
+		 linkedHashSet.add(1);
+		 linkedHashSet.add(2);
+		 linkedHashSet.add(3);
+
+		 for (int i : linkedHashSet) {
+		     System.out.println(i);
+		 }*/
 	}
 	
 	public static List<String> getWords(String text) {
